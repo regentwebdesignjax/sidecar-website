@@ -14,20 +14,20 @@ export const metadata: Metadata = {
 
 const PRINCIPLES = [
   {
-    title: "Small on purpose",
-    body: "Just five tabs, that's it–Home, Envelopes, Activity & Reports. Each one relevant to the fundamentals of running a simple budget, and keeping it simple.",
+    title: "Simple for a reason",
+    body: "Just five tabs, that's it – Home, Envelopes, Activity & Reports. Each one relevant to the fundamentals of running a simple budget, and keeping it simple.",
   },
   {
-    title: "You type it in",
-    body: "Manual entry isn't a limitation we haven't got round to fixing — it's the whole point. No bank credentials, no aggregator, no third party holding your financial history.",
+    title: "Respect for your privacy",
+    body: "Manual entry isn't a limitation we haven't got round to fixing — it's the whole point. No bank credentials required and no third-party integration holding your financial history.",
   },
   {
-    title: "Two people, one budget",
-    body: "Money in a household is a shared problem. Sidecar assumes there are two of you from the start rather than treating sharing as an upgrade.",
+    title: "Two people, one shared budget",
+    body: "Money in a household is a shared responsibility. Sidecar assumes there are two of you from the start rather than treating sharing as an upgrade.",
   },
   {
     title: "Nothing to sell",
-    body: "No ads, no analytics, no trackers. We don't sell your information because we never collected anything worth selling.",
+    body: "No ads, no analytics, no trackers. It's just a simple budgeting app, and we'd like to keep it that way.",
   },
 ];
 
@@ -53,22 +53,22 @@ export default function AboutPage() {
           <div className="mt-8 space-y-6 text-lg leading-relaxed text-ink/85">
             <p>
               My wife and I tried a lot of budgeting apps. Most of them were
-              bloated with features and functions we simply didn&apos;t need.
-              The ones that weren&apos;t had the opposite problem — we had to
+              bloated with features and unwanted third-party ads that simply got in the way.
+              The ones that weren't had the opposite problem — we had to
               bend our budget around how the app wanted to work, instead of the
               app fitting how we actually ran our money.
             </p>
             <p>
-              What we wanted was smaller than any of it. Somewhere to put each
+              What we wanted was smaller than any of it, and simpler. Somewhere to put each
               dollar before we spent it. A number we could both look at. The
-              ability to log a shop from the checkout line and have it show up
-              on the other person&apos;s phone before we got home.
+              ability to log a shopping trip from the checkout line and have it show up
+              on the other person's phone before we could say, "Honey, I'm home!"
             </p>
             <p>
-              That&apos;s what Sidecar is. It isn&apos;t trying to be your bank,
+              That's the mission of Sidecar. It isn't trying to be your bank,
               your accountant, or your financial advisor. It keeps the
               arithmetic straight for two people sharing one budget, and then it
-              gets out of the way.
+              gets out of the way. We hope it serves you and your family well.
             </p>
           </div>
 
@@ -100,9 +100,9 @@ export default function AboutPage() {
       <section className="px-6 py-24 sm:py-32">
         <div className="mx-auto max-w-6xl">
           <SplitHeadline className="display max-w-2xl text-[clamp(2.25rem,5vw,3.5rem)]">
-            What we decided
+            What we built,
             <br />
-            <span className="text-accent italic">not to build.</span>
+            <span className="text-accent italic">and what we didn't.</span>
           </SplitHeadline>
 
           <Reveal
@@ -124,7 +124,7 @@ export default function AboutPage() {
       <section className="bg-teal px-6 py-24 text-band-ink sm:py-32">
         <div className="mx-auto max-w-3xl text-center">
           <SplitHeadline className="display text-[clamp(2.25rem,5vw,3.5rem)] text-band-ink">
-            Made by {siteConfig.legal.entityShort}.
+            Made with ❤ by {siteConfig.legal.entityShort}.
           </SplitHeadline>
           <p className="mt-6 text-band-dim">
             Questions, bug reports, or feature requests go straight to us at{" "}
