@@ -10,8 +10,7 @@ export function CarouselSection() {
           Seven screens. Zero clutter.
         </SplitHeadline>
         <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-dim">
-          You shouldn't need a finance degree to use a budgeting app. With Sidecar you get exactly the tools you need to succeed. A simple design that puts <em>you</em> in control.
-          you 
+          You shouldn't need a finance degree to use a budgeting app. With Sidecar you get exactly the tools you need to succeed. A simple design that puts <em>you</em> in control. 
         </p>
       </div>
 
