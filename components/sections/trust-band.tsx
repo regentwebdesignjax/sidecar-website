@@ -6,23 +6,23 @@ import { SplitHeadline } from "@/components/motion/split-headline";
 const POINTS = [
   {
     icon: Landmark,
-    title: "No bank connection",
-    body: "Nothing imported, nothing synced, and we never ask for banking credentials.",
+    title: "Freedom from bank connections",
+    body: "No need to hand over your banking credentials or sync sensitive data with third-party integrations.",
   },
   {
     icon: EyeOff,
-    title: "No analytics, no trackers",
-    body: "No advertising SDK, no third-party trackers, no advertising identifier.",
+    title: "Safe from lurking trackers",
+    body: "Budget in peace, without worrying about hidden analytics or sneaky advertising trackers following your every move.",
   },
   {
     icon: Megaphone,
-    title: "No ads, ever",
-    body: "Nothing in the app is trying to sell you something else.",
+    title: "You'll never see an ad",
+    body: "Focus entirely on your money goals because we will never try to sell you anything inside the app–of course, except your subscription.",
   },
   {
     icon: Trash2,
-    title: "Delete it all, any time",
-    body: "Export to CSV and delete your account from Settings. It goes immediately.",
+    title: "You can leave anytime",
+    body: "You're always in control. Export your data to a CSV and delete your account with one tap–it's gone instantly.",
   },
 ];
 
@@ -37,14 +37,12 @@ export function TrustBand() {
         <div className="max-w-3xl">
           <p className="eyebrow text-band-dim">The part nobody else advertises</p>
           <SplitHeadline className="display mt-4 text-[clamp(2.25rem,5.5vw,4rem)] text-band-ink">
-            We never see
+            Your financial life
             <br />
-            <span className="text-sun italic">your bank.</span>
+            <span className="text-sun italic">stays private.</span>
           </SplitHeadline>
           <p className="mt-7 max-w-xl text-lg leading-relaxed text-band-dim">
-            Every figure in Sidecar is one you typed. That takes a few seconds a
-            day — and in exchange, your financial life isn&apos;t sitting in one
-            more third party&apos;s database.
+            Your data belongs to you. With Sidcar, you never have to worry about handing over your bank logins to third parties or being stalked by advertisers.
           </p>
         </div>
 
