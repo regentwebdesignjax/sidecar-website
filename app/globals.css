@@ -1,0 +1,255 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Sidecar design tokens.
+
+   These are lifted directly from the iOS app's own stylesheet
+   (design-handoff/.../Sidecar.dc.html :root) so the web and the app are one
+   system rather than two. Do not invent new brand colours here.
+
+   Core pair:  #035352 Authentic Teal   ·   #F3E8BC Sidecar Yellow
+--------------------------------------------------------------------------- */
+@theme {
+  /* Surfaces */
+  --color-paper: #f7f0db;
+  --color-card: #fffcf2;
+  --color-deep: #04201e;
+
+  /* Text */
+  --color-ink: #0a2523;
+  --color-dim: rgba(10, 37, 35, 0.56);
+  --color-faint: rgba(10, 37, 35, 0.34);
+  --color-line: rgba(3, 83, 82, 0.13);
+
+  /* Brand */
+  --color-teal: #035352;
+  --color-sun: #f3e8bc;
+  /* Accent for emphasis text and small marks; becomes cream in dark mode. */
+  --color-accent: #035352;
+  /* Contrast band background and the text that sits on it. */
+  --color-band: #035352;
+  --color-band-ink: #f3e8bc;
+  --color-band-dim: rgba(243, 232, 188, 0.58);
+  --color-band-line: rgba(243, 232, 188, 0.14);
+  --color-band-fill: rgba(243, 232, 188, 0.09);
+
+  /* Money */
+  --color-pos: #0e7a5f;
+  --color-neg: #a8412c;
+  --color-neg-soft: #e2896f;
+
+  /* Type */
+  --font-serif: var(--font-instrument-serif), "Iowan Old Style", Georgia, serif;
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-wordmark: var(--font-alan-sans), var(--font-jakarta), system-ui, sans-serif;
+
+  /* Radii — the app rounds generously. */
+  --radius-card: 1.25rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.75rem;
+  --radius-2xl: 2.5rem;
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ---------------------------------------------------------------------------
+   Dark theme.
+
+   Three states, and the order matters:
+
+   1. No `data-theme` attribute  — follow the operating system. This is what a
+      visitor with JavaScript disabled always gets.
+   2. data-theme="light"         — an explicit choice; must beat a dark system.
+   3. data-theme="dark"          — an explicit choice; must beat a light system.
+
+   The media block is scoped with :not([data-theme="light"]) so an explicit
+   light choice survives a dark system, and the attribute block below repeats
+   the palette so an explicit dark choice survives a light system.
+
+   KEEP THE TWO BLOCKS IN SYNC — they are the same palette twice.
+--------------------------------------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-paper: #04201e;
+    --color-card: #0a302d;
+    --color-ink: #f3e8bc;
+    --color-dim: rgba(243, 232, 188, 0.58);
+    --color-faint: rgba(243, 232, 188, 0.32);
+    --color-line: rgba(243, 232, 188, 0.14);
+    --color-accent: #f3e8bc;
+    --color-band: #0a302d;
+    --color-pos: #5fcfa6;
+    --color-neg: #e2896f;
+  }
+}
+
+:root[data-theme="dark"] {
+  --color-paper: #04201e;
+  --color-card: #0a302d;
+  --color-ink: #f3e8bc;
+  --color-dim: rgba(243, 232, 188, 0.58);
+  --color-faint: rgba(243, 232, 188, 0.32);
+  --color-line: rgba(243, 232, 188, 0.14);
+  --color-accent: #f3e8bc;
+  --color-band: #0a302d;
+  --color-pos: #5fcfa6;
+  --color-neg: #e2896f;
+}
+
+/* Theme-dependent artwork and icons.
+   Two elements in the DOM, CSS picks one — so the correct image is painted on
+   the first frame with no JavaScript and no hydration flash. Same three-state
+   cascade as the palette above. */
+[data-theme-show="light"] {
+  display: block;
+}
+[data-theme-show="dark"] {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) [data-theme-show="dark"] {
+    display: block;
+  }
+  :root:not([data-theme="light"]) [data-theme-show="light"] {
+    display: none;
+  }
+}
+
+:root[data-theme="dark"] [data-theme-show="dark"] {
+  display: block;
+}
+:root[data-theme="dark"] [data-theme-show="light"] {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------- */
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Sections use full-bleed transforms; never let them widen the page. */
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background-color: var(--color-teal);
+    color: #f3e8bc;
+  }
+
+  /* Figures are set in the serif, as they are in the app. Tabular so GSAP
+     count-ups do not make the layout twitch. */
+  .figure {
+    font-family: var(--font-serif);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@layer utilities {
+  /* Display headings: serif, tight, optically balanced — as the app sets them. */
+  .display {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  /* Apple's display corner radius is 12.5% of the screen's width — 55pt across
+     a 440pt screen on the 6.9" iPhone. Expressing it as a percentage pair keeps
+     the arc perfectly circular *and* correctly proportioned at every rendered
+     size, which a fixed px or rem radius cannot do: the same 2.2rem that looks
+     right on a 290px-wide render is far too round at 180px on a phone.
+
+     The vertical figure is the horizontal one scaled by the image's aspect
+     ratio (12.5 x 660/1434 = 5.7531), so both axes resolve to the same number
+     of pixels. This is calibrated to the 1320:2868 device captures — pair it
+     with `aspect-[660/1434]` or the corners turn elliptical. */
+  .screen-radius {
+    border-radius: 12.5% / 5.7531%;
+    overflow: hidden;
+  }
+
+  .eyebrow {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  /* A pool of page-colour light, used to keep copy legible over the 3D
+     envelope field without resorting to a flat panel. */
+  .paper-wash::before {
+    content: "";
+    position: absolute;
+    inset: -4rem -6rem;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(
+      55% 55% at 40% 50%,
+      var(--color-paper) 0%,
+      color-mix(in oklab, var(--color-paper) 78%, transparent) 46%,
+      transparent 78%
+    );
+  }
+
+  .paper-wash-center::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(
+      42% 30% at 50% 43%,
+      color-mix(in oklab, var(--color-paper) 88%, transparent) 0%,
+      color-mix(in oklab, var(--color-paper) 55%, transparent) 45%,
+      transparent 78%
+    );
+  }
+
+  /* Used by SplitHeadline: each line is clipped so characters rise into view. */
+  .split-line {
+    overflow: hidden;
+    padding-bottom: 0.12em;
+    margin-bottom: -0.12em;
+  }
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
