@@ -2,9 +2,10 @@ import { Reveal } from "@/components/motion/reveal";
 import { SplitHeadline } from "@/components/motion/split-headline";
 
 const BEATS = [
-  "Both of you see the same numbers, updating live.",
-  "Log a shop on the way home and it's on their phone before you are.",
-  "Owners invite and remove; remove someone and their access ends immediately.",
+  "You both see the big picture: Share a single budget across two phones, with numbers that update live for both of you.",
+  "You're always in sync: When you a grocery run on the way home, your spouse sees it instantly. Now you can conquer your financial goals together.",
+  "You manage the access: As the owner, you can easily invite your spouse to join your budget, keeping you perfectly aligned.",
+  "Why stop at one?: Create additional budgets to keep track of special home projects, that family vacation or larger savings goals.",
 ];
 
 export function BuiltForTwo() {
@@ -31,15 +32,14 @@ export function BuiltForTwo() {
         </Reveal>
 
         <div>
-          <p className="eyebrow text-accent">Built for two</p>
+          <p className="eyebrow text-accent">Built for the two of you</p>
           <SplitHeadline className="display mt-4 text-[clamp(2.25rem,5vw,3.5rem)]">
-            One budget.
+            One household budget.
             <br />
             <span className="text-accent italic">Two phones.</span>
           </SplitHeadline>
           <p className="mt-7 text-lg leading-relaxed text-dim">
-            Most budgets fail because only one person is keeping them. Share
-            yours and the arithmetic stops being one person&apos;s job.
+            Managing household finances is a team sport! Most budgets faily because the burden falls on just one person. With Sidecar, you and your spouse can finally stay on the exact same page without the usual money stress.
           </p>
 
           <Reveal stagger className="mt-9 space-y-4">
