@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Netlify form registration</title>
+  </head>
+  <body>
+    <!--
+      Netlify discovers forms by parsing static HTML at deploy time. A Next.js
+      static export renders the real form with React, which the crawler never
+      sees, so this file declares the form's shape instead. The React form on
+      /contact posts urlencoded data here.
+
+      Do not delete: without it, submissions 404.
+    -->
+    <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="contact" />
+      <input type="text" name="bot-field" />
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <select name="topic">
+        <option value="support">Support</option>
+        <option value="bug">Bug report</option>
+        <option value="feature">Feature request</option>
+        <option value="privacy">Privacy or data</option>
+        <option value="other">Something else</option>
+      </select>
+      <textarea name="message"></textarea>
+    </form>
+  </body>
+</html>
