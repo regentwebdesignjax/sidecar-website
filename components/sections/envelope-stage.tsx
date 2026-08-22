@@ -47,9 +47,8 @@ export function EnvelopeStage({
 
   useGSAP(
     () => {
-      if (!enabled) return;
-
-      // Reduced motion: show the resolved grid and never touch it again.
+      // Reduced motion: nothing here scrubs with scroll. The photo and, if
+      // WebGL is available, the resolved envelope grid just sit there.
       if (reduced) {
         progress.current = 1;
         return;
@@ -58,18 +57,25 @@ export function EnvelopeStage({
       const act = actRef.current;
       if (!act) return;
 
-      const assemble = gsap.to(progress, {
-        current: 1,
-        ease: "none",
-        scrollTrigger: {
-          trigger: act,
-          start: "top bottom",
-          end: "center center",
-          scrub: 0.6,
-        },
-      });
+      // Only the envelope grid needs a canvas, so only create this when one
+      // exists to animate.
+      const assemble = enabled
+        ? gsap.to(progress, {
+            current: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: act,
+              start: "top bottom",
+              end: "center center",
+              scrub: 0.6,
+            },
+          })
+        : null;
 
-      // Fade the field out as the act hands off to the rest of the page.
+      // Fade the whole layer — photo and envelopes together — as the act
+      // hands off to the rest of the page. Independent of `enabled`, so the
+      // background photo still fades out on its own schedule when there is no
+      // WebGL to draw envelopes over it.
       const fade = gsap.fromTo(
         canvasRef.current,
         { opacity: 1 },
@@ -86,8 +92,8 @@ export function EnvelopeStage({
       );
 
       return () => {
-        assemble.scrollTrigger?.kill();
-        assemble.kill();
+        assemble?.scrollTrigger?.kill();
+        assemble?.kill();
         fade.scrollTrigger?.kill();
         fade.kill();
       };
@@ -102,15 +108,37 @@ export function EnvelopeStage({
         aria-hidden="true"
         className="pointer-events-none sticky top-0 -z-10 h-svh w-full"
       >
-        {enabled ? (
-          <EnvelopeField
-            progress={progress}
-            count={narrow ? 12 : 24}
-            columns={narrow ? 3 : 6}
-            theme={theme}
-            className="size-full"
+        {/*
+          One clip region for the whole stage, starting at the height of the
+          nav bar. The nav is transparent until you scroll, so anything drawn
+          under it makes the links hard to read — and the photo below is scaled
+          well past its box, so clipping is the only thing that reliably keeps
+          it out from behind the bar. Both layers fill this region.
+        */}
+        <div className="absolute inset-x-0 top-18 bottom-0 overflow-hidden">
+          {/*
+            Ambient texture behind the envelope field, not a photograph meant
+            to be looked at directly. Rendered unconditionally, unlike the
+            canvas below, so the hero still has some life when WebGL is
+            unavailable and no envelopes draw at all.
+          */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/hand-holding-iphone.webp"
+            alt=""
+            className="hero-photo absolute inset-0 size-full object-cover object-center"
           />
-        ) : null}
+
+          {enabled ? (
+            <EnvelopeField
+              progress={progress}
+              count={narrow ? 12 : 24}
+              columns={narrow ? 3 : 6}
+              theme={theme}
+              className="absolute inset-0 size-full"
+            />
+          ) : null}
+        </div>
       </div>
 
       {/* Pull the content back over the sticky canvas. */}

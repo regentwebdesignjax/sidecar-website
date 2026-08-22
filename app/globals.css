@@ -171,6 +171,37 @@
     text-wrap: balance;
   }
 
+  /* Ambient photography behind the hero.
+
+     Heavily blurred on purpose: the source is a photo of the app's Activity
+     screen, and unblurred its own UI — headings, tab bar, dollar figures —
+     reads straight through the headline as a second, competing interface.
+     Blurred it becomes warm texture instead: a soft human shape and a wash of
+     cafe light, with nothing legible enough to compete.
+
+     Opacity is theme-aware. The photo is light, so on the dark paper it
+     carries much further than it does on cream and has to be pulled back. */
+  .hero-photo {
+    opacity: 0.16;
+    /* Blurred hard enough that the phone stops reading as an object and
+       becomes a soft vertical form in a warm room. */
+    filter: grayscale(1) blur(22px);
+    /* Scaled well past the frame and pushed off-axis, so the handset is not
+       sitting dead centre behind the headline and the blur cannot feather a
+       visible border in at the edges. */
+    transform: scale(1.7) translate(9%, 4%);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .hero-photo {
+      opacity: 0.07;
+    }
+  }
+
+  :root[data-theme="dark"] .hero-photo {
+    opacity: 0.07;
+  }
+
   /* Apple's display corner radius is 12.5% of the screen's width — 55pt across
      a 440pt screen on the 6.9" iPhone. Expressing it as a percentage pair keeps
      the arc perfectly circular *and* correctly proportioned at every rendered

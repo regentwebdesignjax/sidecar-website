@@ -58,11 +58,18 @@ function buildPoses(
     // phone as well as a wide desktop. Rotations stay shallow — an envelope
     // turned edge-on reads as a shard, not as paper.
     const angle = (i / count) * Math.PI * 2 + random() * 0.5;
-    const push = 0.62 + random() * 0.42;
+    // >1 means the ring sits at or past the edge of the visible box, so the
+    // centre stays clear for the headline and some envelopes crop at the
+    // frame — which is the intended look, not an accident.
+    const push = 1.05 + random() * 0.55;
     scattered.push({
       position: new THREE.Vector3(
-        Math.cos(angle) * viewWidth * push,
-        Math.sin(angle) * viewHeight * push,
+        // Half-extents: `viewport` reports the full visible box, but a ring
+        // radius is measured from the centre. Using the full width here made
+        // the radius twice the intended size and pushed every envelope past
+        // the edge of the frustum.
+        Math.cos(angle) * (viewWidth / 2) * push,
+        Math.sin(angle) * (viewHeight / 2) * push,
         -1.5 - random() * 5,
       ),
       rotation: new THREE.Euler(
