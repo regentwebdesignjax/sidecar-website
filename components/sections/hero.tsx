@@ -55,7 +55,7 @@ export function Hero() {
           data-hero-fade
           className="eyebrow rounded-full border border-line bg-card/70 px-4 py-2 text-accent backdrop-blur-sm"
         >
-          Envelope budgeting made simple
+          Envelope budgeting, refreshingly simplified.
         </p>
 
         <SplitHeadline
@@ -64,18 +64,18 @@ export function Hero() {
           delay={0.25}
           className="display mt-7 text-[clamp(3rem,10vw,7rem)] text-ink"
         >
-          Every dollar
+          Take control of your
           <br />
-          gets a job
+          household budget (Together!)
         </SplitHeadline>
 
         <p
           data-hero-fade
           className="mt-7 max-w-xl text-lg leading-relaxed text-dim text-balance sm:text-xl"
         >
-          Sidecar is budgeting for people who want to know what they can
-          actually spend. No bank connection. No ads. No tracking. Just a
-          number on the screen instead of a guess.
+          With Sidecar, you can finally know exactly what you have to spend.
+          Enjoy a refreshingly simple way to manage your money – without invasive trackers,
+          annoying ads, or bloated features. Just you, your spouse, and peace of mind.
         </p>
 
         <div
