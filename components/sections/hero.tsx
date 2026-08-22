@@ -89,7 +89,7 @@ export function Hero() {
         </div>
 
         <p data-hero-fade className="mt-6 text-sm text-faint">
-          Free to use · No account required to look around
+          Sign up for free today!
         </p>
       </div>
 
