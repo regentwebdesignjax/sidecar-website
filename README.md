@@ -36,11 +36,26 @@ so the whole site is static HTML, CSS and JS.
 
 ### The contact form
 
-The form uses **Netlify Forms**. Because a static export renders the form with
-React, Netlify's build-time crawler would never see it, so `public/__forms.html`
-declares the form's shape instead and the React form on `/contact` posts to it.
+The form uses **Netlify Forms**, which registers a form by parsing the deployed
+HTML for `data-netlify` at build time. It is declared in two places, both named
+`contact` and carrying identical fields:
 
-**Don't delete `public/__forms.html`** — without it, submissions 404.
+1. **The real form on `/contact`.** The static export prerenders it, so the
+   crawler sees `name`, `method="POST"`, `data-netlify="true"`,
+   `netlify-honeypot="bot-field"` and the hidden `form-name` input in the
+   output. (`data-netlify` is the JSX-safe spelling of the bare `netlify`
+   attribute in Netlify's docs — they are equivalent, and a valueless attribute
+   cannot be written in JSX.)
+2. **`public/__forms.html`**, a static declaration of the same form. This is the
+   documented fallback for a framework that renders its forms with JavaScript,
+   and it is what the submit handler POSTs to.
+
+Keeping both is deliberate: if the form ever stops being prerendered, detection
+would otherwise fail silently. **Don't delete `public/__forms.html`** — the
+submit handler posts to it.
+
+If you change the form's fields, change them in both places, or Netlify's
+recorded schema will disagree with what is actually submitted.
 
 After the first deploy: open **Netlify → Forms → contact**, turn on email
 notifications, and send one real test submission to confirm it arrives.

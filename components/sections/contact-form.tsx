@@ -62,9 +62,23 @@ export function ContactForm() {
   return (
     <form
       name="contact"
+      method="POST"
+      // Netlify registers a form by parsing the deployed HTML for these
+      // attributes. `data-netlify` is the JSX-safe spelling of the bare
+      // `netlify` attribute from Netlify's docs — they are equivalent, and a
+      // valueless attribute is not expressible in JSX.
+      data-netlify="true"
+      netlify-honeypot="bot-field"
       onSubmit={handleSubmit}
       className="rounded-card border border-line bg-card/50 p-7 sm:p-10"
     >
+      {/*
+        Netlify attributes a submission by this field, so it has to be in the
+        markup — not only in the FormData the submit handler builds. With it
+        here the form also degrades to a plain HTML POST if JavaScript fails.
+      */}
+      <input type="hidden" name="form-name" value="contact" />
+
       {/* Honeypot: a real person never fills this in. */}
       <p className="hidden">
         <label>
