@@ -199,9 +199,19 @@ source and write into `public/`, so they are safe to re-run — re-run them only
 if the source artwork changes:
 
 ```bash
-node scripts/optimize-assets.mjs       # WebP conversion, resizing, favicons
+node scripts/optimize-assets.mjs       # WebP conversion, resizing, PWA icons
 node scripts/build-device-images.mjs   # app screenshots, from ../Screenshots/RAW
+node scripts/build-favicon.mjs         # favicon.ico + favicon PNGs
 ```
+
+`build-favicon.mjs` is the exception to "source lives on the external drive":
+its source, `public/sidecar-favicon.png`, is checked into the repo, because
+it's a favicon-specific mark rather than a crop of a larger asset — the app
+icon (`icon-1024.png`) is the wordmark, which is legible at app-icon size but
+turns into a smear at 16–32px, so a dedicated car-only glyph is used for the
+browser tab instead. `next build` picks up `app/favicon.ico` automatically by
+file convention; sharp can't write `.ico` directly, so the script packs
+PNG-compressed frames into one by hand, which every modern browser accepts.
 
 The app screenshots come from `../Screenshots/RAW` — clean full-bleed 1320x2868
 device captures with square corners. The corner radius is applied in CSS by the
