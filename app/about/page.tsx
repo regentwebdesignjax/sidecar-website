@@ -9,13 +9,13 @@ import { siteConfig } from "@/lib/site.config";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Sidecar was built by a husband and wife who were tired of budgeting apps bloated with features they didn't need.",
+    "Sidecar was built by a husband and wife who were tired of budgeting apps bloated with features they didn't need & unwanted third-party ads.",
 };
 
 const PRINCIPLES = [
   {
     title: "Small on purpose",
-    body: "Five tabs. Every one of them is something you'll use. We'd rather leave a feature out than make you navigate around it for the next ten years.",
+    body: "Just five tabs, that's it–Home, Envelopes, Activity & Reports. Each one relevant to the fundamentals of running a simple budget, and keeping it simple.",
   },
   {
     title: "You type it in",
