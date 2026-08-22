@@ -2,10 +2,10 @@ import { Reveal } from "@/components/motion/reveal";
 import { SplitHeadline } from "@/components/motion/split-headline";
 
 const BEATS = [
-  "<strong>You both see the big picture:</strong> Share a single budget across two phones, with numbers that update live for both of you.",
-  "<strong>You're always in sync:</strong> When you a grocery run on the way home, your spouse sees it instantly. Now you can conquer your financial goals together.",
-  "<strong>You manage the access:</strong> As the owner, you can easily invite your spouse to join your budget, keeping you perfectly aligned.",
-  "<strong>Why stop at one?:</strong> Create additional budgets to keep track of special home projects, that family vacation or larger savings goals.",
+  "You both see the big picture: Share a single budget across two phones, with numbers that update live for both of you.",
+  "You're always in sync: When you a grocery run on the way home, your spouse sees it instantly. Now you can conquer your financial goals together.",
+  "You manage the access: As the owner, you can easily invite your spouse to join your budget, keeping you perfectly aligned.",
+  "Why stop at one?: Create additional budgets to keep track of special home projects, that family vacation or larger savings goals.",
 ];
 
 export function BuiltForTwo() {
