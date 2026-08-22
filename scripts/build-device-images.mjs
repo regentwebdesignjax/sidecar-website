@@ -20,7 +20,9 @@ import sharp from "sharp";
 import { mkdir, readdir, rm } from "node:fs/promises";
 import path from "node:path";
 
-const SRC = path.join(import.meta.dirname, "..", "..", "Screenshots", "RAW");
+import { findAssetsDir } from "./assets-dir.mjs";
+
+const SRC = path.join(findAssetsDir("Screenshots"), "Screenshots", "RAW");
 const OUT = path.join(import.meta.dirname, "..", "public", "device");
 
 /** Half of 1320x2868 — an exact 2:1 downscale, so no resampling softness. */

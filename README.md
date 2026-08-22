@@ -54,11 +54,29 @@ notifications, and send one real test submission to confirm it arrives.
 - [ ] Enable form notifications in Netlify and send a test submission.
 - [ ] Read the `{/* EDIT ME */}` founder story on `/about` and adjust the wording.
 
+## Where this repo lives
+
+The working copy is at `~/Developer/sidecar-website` on the internal drive, and
+is symlinked back into the client folder on the external drive as
+`Sidecar Website/Website`. Both paths work; they are the same directory.
+
+This is deliberate. The external drive is exFAT, which cannot store macOS
+extended attributes natively, so macOS writes a `._name` companion beside every
+file. That broke three separate things while this site was being built:
+Turbopack's cache refused to open, an accidental `node_modules` upload, and — the
+serious one — `._main` and `._HEAD` files inside `.git/refs/`, which git rejects
+as invalid ref names and which stopped GitHub Desktop from loading the repo at
+all.
+
+On APFS none of those companions are created. A full `npm ci` and build produces
+zero of them.
+
 ## A note on this volume
 
-The project lives on an exFAT drive, which cannot store macOS extended
-attributes natively — so macOS writes a companion `._name` file beside every
-real file.
+Kept as a safety net in case the repo is ever worked on from an exFAT volume
+again (see above). On APFS it finds nothing and exits immediately.
+
+On exFAT, macOS writes a companion `._name` file beside every real file.
 
 Turbopack's persistent cache names its files numerically (`00000001.sst`) and
 parses those names as integers when it opens the store. It would hit
@@ -148,9 +166,22 @@ readable with JavaScript disabled entirely.
 
 ### Assets
 
-Source artwork lives in the sibling folders (`../Screenshots`, `../Images`,
-`../Logos`, `../App Icon`) and is **not** committed. Two one-time scripts turn it
-into what `public/` serves — re-run them only if the source artwork changes:
+Source artwork is **not** committed. It lives with the rest of the client files
+on the external drive, in `Sidecar Website/` alongside `Screenshots/`, `Images/`,
+`Logos/` and `App Icon/`.
+
+`scripts/assets-dir.mjs` locates that folder: it honours `$SIDECAR_ASSETS`
+first, then looks beside the repo, then falls back to the known path on the
+drive. If it cannot find the artwork it says so and tells you how to point at
+it, rather than failing obscurely:
+
+```bash
+SIDECAR_ASSETS="/path/to/Sidecar Website" node scripts/build-device-images.mjs
+```
+
+Two scripts turn that artwork into what `public/` serves. Both read from the
+source and write into `public/`, so they are safe to re-run — re-run them only
+if the source artwork changes:
 
 ```bash
 node scripts/optimize-assets.mjs       # WebP conversion, resizing, favicons
