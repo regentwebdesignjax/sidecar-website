@@ -5,12 +5,13 @@ export function CarouselSection() {
   return (
     <section className="px-6 py-28 sm:py-36">
       <div className="mx-auto max-w-6xl text-center">
-        <p className="eyebrow text-accent">Inside the app</p>
+        <p className="eyebrow text-accent">Under the hood</p>
         <SplitHeadline className="display mx-auto mt-4 max-w-3xl text-[clamp(2.25rem,5.5vw,4rem)]">
-          Seven screens. No clutter.
+          Seven screens. Zero clutter.
         </SplitHeadline>
         <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-dim">
-          Everything Sidecar does, and nothing it doesn&apos;t.
+          You shouldn't need a finance degree to use a budgeting app. With Sidecar you get exactly the tools you need to succeed. A simple design that puts <em>you</em> in control.
+          you 
         </p>
       </div>
 
