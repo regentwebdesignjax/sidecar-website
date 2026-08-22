@@ -64,9 +64,9 @@ export function Hero() {
           delay={0.25}
           className="display mt-7 text-[clamp(3rem,10vw,7rem)] text-ink"
         >
-          Take control of your
+          Take control of
           <br />
-          household budget (Together!)
+          your budget (Together!)
         </SplitHeadline>
 
         <p
