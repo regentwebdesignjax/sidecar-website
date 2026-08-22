@@ -66,7 +66,7 @@ export function Hero() {
         >
           Take control of your
           <br />
-          household budget (Together!)
+          budget – Together!
         </SplitHeadline>
 
         <p
