@@ -9,18 +9,18 @@ import { useReducedMotion } from "@/components/motion/use-reduced-motion";
 const STEPS = [
   {
     n: "01",
-    title: "Money comes in",
-    body: "A paycheck lands. Instead of one balance you have to interpret, Sidecar splits it the way you decided once — fixed amounts for the bills that don't move, percentages for everything else.",
+    title: "You decide where the money goes",
+    body: "When your paycheck lands, you can instantly split it into the categories you care about. Set aside fixed amounts for bills and percentages for the rest–you're completely in the driver's seat.",
   },
   {
     n: "02",
-    title: "Every dollar gets a job",
-    body: "Rent, groceries, petrol, the school run. Each envelope holds a real number, and that number is what you have — not what's left in the account until the next bill clears.",
+    title: "Give every dollar a job",
+    body: "From rent to groceries to gas and date nights, your digital envelopes hold exactly what you've set aside. Now you can easily see what you actually have, instead of guessing what's left until payday.",
   },
   {
     n: "03",
-    title: "You spend without guessing",
-    body: "Standing in a shop, you open the envelope and the answer is already there. Nothing to reconcile, nothing to project, nothing to hope about.",
+    title: "Spend with total confidence",
+    body: "Standing at the checkout counter? Just open your envelope, and you'll know instantly if you're good to go. No more mental math, no more hoping for the best.",
   },
 ];
 
@@ -75,9 +75,9 @@ export const EnvelopeAct = forwardRef<HTMLElement>(function EnvelopeAct(
             id="how-title"
             className="display mt-4 text-[clamp(2.25rem,5.5vw,4rem)]"
           >
-            Not one balance.
+            Your money.
             <br />
-            <span className="text-accent italic">A place for everything.</span>
+            <span className="text-accent italic">Your rules.</span>
           </h2>
         </div>
 
