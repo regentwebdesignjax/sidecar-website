@@ -27,7 +27,7 @@ const PRINCIPLES = [
   },
   {
     title: "Nothing to sell",
-    body: "No ads, no analytics, no trackers. It's just a simple budgeting app, and we'd like to keep it that way.",
+    body: "No ads, no analytics, no trackers. It's just a simple budgeting app. We like it that way, and we thought you would too.",
   },
 ];
 
