@@ -48,16 +48,17 @@ export function ReportsAct() {
     <section className="px-6 py-28 sm:py-36">
       <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-2 lg:gap-20">
         <div>
-          <p className="eyebrow text-accent">Reports</p>
+          <p className="eyebrow text-accent">Clear, Simple Reports</p>
           <SplitHeadline className="display mt-4 text-[clamp(2.25rem,5vw,3.5rem)]">
-            Watch where it
+            You can finally see where
             <br />
-            <span className="text-accent italic">actually goes.</span>
+            <span className="text-accent italic">your money goes.</span>
           </SplitHeadline>
           <p className="mt-7 text-lg leading-relaxed text-dim">
-            Spending by envelope over a week, a month, or a quarter, with money
-            in and money out side by side — and this period measured against the
-            last.
+            With Sidecar’s simple reporting, you have the power to track 
+            your spending habits over a week, a month, or look back over two years. 
+            You'll clearly see what came in versus what went out, helping you and
+            your spouse make smarter, more confident decisions for the future.
           </p>
         </div>
 
