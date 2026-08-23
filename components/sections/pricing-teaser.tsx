@@ -10,12 +10,12 @@ export function PricingTeaser() {
       <Reveal className="mx-auto max-w-3xl text-center">
         <p className="eyebrow text-accent">Pricing</p>
         <SplitHeadline className="display mt-4 text-[clamp(2.5rem,6vw,4.5rem)]">
-          It costs nothing.
+          Start Achieving Your Goals for Free!
         </SplitHeadline>
         <p className="mx-auto mt-7 max-w-xl text-lg leading-relaxed text-dim">
-          Every feature on this page works today, free, with no trial and no card.
-          There&apos;s a paid tier on the roadmap — and the things you already
-          use will stay free on your account when it arrives.
+          You can start using every amazing feature you see here today, completely for free. 
+          No credit card required, and no hidden trial periods! While we plan to add an optional
+          paid tier down the road, the core features you and your partner rely on will always remain free.
         </p>
         <div className="mt-10 flex flex-wrap justify-center gap-4">
           <Button size="lg" asChild>
