@@ -7,13 +7,14 @@ export function FinalCta() {
       <div className="mx-auto grid max-w-6xl items-center gap-16 lg:grid-cols-[1.1fr_0.9fr]">
         <div>
           <SplitHeadline className="display text-[clamp(2.5rem,6vw,4.5rem)] text-band-ink">
-            Stop guessing
+            Stop guessing. Start living.
             <br />
             <span className="text-sun italic">what&apos;s left.</span>
           </SplitHeadline>
           <p className="mt-7 max-w-lg text-lg leading-relaxed text-band-dim">
-            Give every dollar a job before you spend it. Free, private, and
-            built for the two of you.
+            Now you can give every single dollar a purpose before you spend it. 
+            Join the couples who are transforming their finances with a tool 
+            that's free, completely private, and built just for you.
           </p>
           <div className="mt-10">
             <AppStoreBadge tone="onBand" />
