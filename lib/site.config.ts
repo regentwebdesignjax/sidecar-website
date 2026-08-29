@@ -9,10 +9,13 @@ export const siteConfig = {
   url: "https://sidecar.regentmediagroup.com",
 
   /**
-   * LAUNCH DAY: paste the App Store link here and every download button on the
-   * site goes live. While it is empty, badges render a "coming soon" state.
+   * Deliberately locale-less. Apple redirects to the visitor's own storefront
+   * from this form; hardcoding the canonical /us/ path would send everyone to
+   * the US store. Emptying this string reverts every download button on the
+   * site to a "coming soon" state.
    */
-  appStoreUrl: "",
+  appStoreUrl:
+    "https://apps.apple.com/app/sidecar-budgeting-made-simple/id6802113235",
 
   legal: {
     entity: "Regent Media Group, LLC",
