@@ -112,7 +112,9 @@
   .hero-card--groceries { left: 80%; top: 60%; width: clamp(120px, 14vw, 180px); }
 }
 @media (max-width: 860px) {
-  .hero-stage { min-height: 100svh; }
+  /* Phones: size to the large viewport (browser bars collapsed) so the next
+     scene never peeks above Safari's toolbar while the bars are showing. */
+  .hero-stage { height: 100vh; height: 100lvh; min-height: 100lvh; }
   .hero-copy { left: var(--sc-gutter); right: var(--sc-gutter); top: 6.5rem; transform: none; max-width: none; }
   .hero-copy h1 { font-size: clamp(2.4rem, 11vw, 3.2rem); }
   .hero-copy .lede { max-width: 30ch; }
