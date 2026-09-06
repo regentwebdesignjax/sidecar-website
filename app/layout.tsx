@@ -3,8 +3,8 @@ import { Instrument_Serif, Plus_Jakarta_Sans } from "next/font/google";
 import localFont from "next/font/local";
 
 import { SmoothScroll } from "@/components/motion/smooth-scroll";
-import { THEME_SCRIPT } from "@/components/theme/theme";
 import { Footer } from "@/components/site/footer";
+import { GroundWatch } from "@/components/site/ground-watch";
 import { Nav } from "@/components/site/nav";
 import { siteConfig } from "@/lib/site.config";
 
@@ -82,10 +82,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#F7F0DB" },
-    { media: "(prefers-color-scheme: dark)", color: "#04201E" },
-  ],
+  themeColor: "#F7F0DB",
 };
 
 export default function RootLayout({
@@ -95,13 +92,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${instrumentSerif.variable} ${jakarta.variable} ${alanSans.variable}`}
-      // The theme script sets data-theme on this element before React hydrates.
-      suppressHydrationWarning
     >
-      <head>
-        {/* Must run before first paint, so it is inlined and render-blocking. */}
-        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
-      </head>
       <body>
         <SmoothScroll />
         <a
@@ -111,6 +102,7 @@ export default function RootLayout({
           Skip to content
         </a>
         <Nav />
+        <GroundWatch />
         <main id="main">{children}</main>
         <Footer />
       </body>

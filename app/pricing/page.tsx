@@ -35,7 +35,7 @@ export default function PricingPage() {
       </section>
 
       {/* Comparison */}
-      <section className="bg-teal px-6 py-24 text-band-ink sm:py-32">
+      <section data-ground="dark" className="bg-teal px-6 py-24 text-band-ink sm:py-32">
         <div className="mx-auto max-w-5xl">
           <SplitHeadline className="display max-w-2xl text-[clamp(2.25rem,5vw,3.5rem)] text-band-ink">
             What you give up.

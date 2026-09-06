@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { Reveal } from "@/components/motion/reveal";
 import { SplitHeadline } from "@/components/motion/split-headline";
 import { AppStoreBadge } from "@/components/site/app-store-badge";
+import { CardFanCarousel } from "@/components/ui/card-fan-carousel";
+import { ScreenStack } from "@/components/ui/screen-stack";
 import { Hero10 } from "@/components/ui/hero-10";
 import { features, screenshots } from "@/lib/features";
 
@@ -60,38 +62,25 @@ export default function FeaturesPage() {
         </Reveal>
       </section>
 
-      <section className="bg-teal px-6 py-24 text-band-ink sm:py-32">
+      <section data-ground="dark" className="bg-teal px-6 py-24 text-band-ink sm:py-32">
         <div className="mx-auto max-w-6xl">
-          <SplitHeadline className="display max-w-2xl text-[clamp(2.25rem,5vw,3.5rem)] text-band-ink">
+          <SplitHeadline className="display mx-auto max-w-2xl text-center text-[clamp(2.25rem,5vw,3.5rem)] text-band-ink">
             Every screen,
             <br />
             <span className="text-sun italic">end to end.</span>
           </SplitHeadline>
 
-          <Reveal
-            stagger
-            className="mt-16 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4"
-          >
-            {screenshots.map((shot) => (
-              <figure key={shot.id}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={shot.src}
-                  alt={`${shot.label} — ${shot.caption}`}
-                  width={660}
-                  height={1434}
-                  loading="lazy"
-                  decoding="async"
-                  className="screen-radius w-full shadow-[0_24px_50px_-24px_rgba(2,16,15,0.8)]"
-                />
-                <figcaption className="mt-4 text-sm text-band-dim">
-                  {shot.caption}
-                </figcaption>
-              </figure>
-            ))}
-          </Reveal>
+          {/* Phones get a swipeable stack; the fan needs the width. */}
+          <CardFanCarousel
+            className="mt-12 max-sm:hidden"
+            cards={screenshots.map((shot) => ({ id: shot.id, src: shot.src, label: shot.label, caption: shot.caption }))}
+          />
+          <ScreenStack
+            className="mt-10 sm:hidden"
+            cards={screenshots.map((shot) => ({ id: shot.id, src: shot.src, label: shot.label, caption: shot.caption }))}
+          />
 
-          <div className="mt-16">
+          <div className="mt-14 flex justify-center">
             <AppStoreBadge tone="onBand" />
           </div>
         </div>

@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 
 import { Logo } from "@/components/site/logo";
-import { ThemeToggle } from "@/components/site/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { navLinks } from "@/lib/site.config";
 import { cn } from "@/lib/utils";
@@ -81,14 +80,12 @@ export function Nav() {
         </ul>
 
         <div className="hidden items-center gap-3 md:flex">
-          <ThemeToggle />
           <Button size="sm" asChild>
             <Link href="/pricing">Get Sidecar</Link>
           </Button>
         </div>
 
         <div className="flex items-center gap-1 md:hidden">
-          <ThemeToggle />
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}

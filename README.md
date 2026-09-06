@@ -117,10 +117,10 @@ fire — run `node scripts/strip-appledouble.mjs` first, or just use `npm run de
 app/                 one folder per route, plus sitemap.ts and robots.ts
 components/
   motion/            GSAP setup, Lenis smooth scroll, reveal primitives
-  sections/          homepage sections and the envelope stage
+  sections/          contact form and pricing cards
+  story/             the homepage story (scroll-craft)
   site/              nav, footer, logo, App Store badge, legal layout
-  three/             the WebGL envelope field
-  ui/                button, Hero10, FeatureCarousel
+  ui/                button, Hero10, the Features card fan
 lib/                 site config, feature and pricing data, cn()
 public/              images, device crops, logos, icons, __forms.html
 scripts/             one-time asset preparation (see below)
@@ -133,51 +133,34 @@ stylesheet (`Sidecar.dc.html` in the design handoff) so the app and the site are
 one system rather than two. The core pair is `#035352` Authentic Teal and
 `#F3E8BC` Sidecar Yellow.
 
-### Light and dark
+### Light only
 
-There is a toggle in the nav, and three states:
+The design system defines one cream theme and a teal marketing ground, so the
+site is light-only: no toggle, no `prefers-color-scheme` palette. The nav bar
+still re-inks over dark bands (see the story section above).
 
-| State | Behaviour |
-| --- | --- |
-| No `data-theme` on `<html>` | Follow the operating system. This is what a visitor with JavaScript disabled always gets. |
-| `data-theme="light"` | Explicit choice — beats a dark system. |
-| `data-theme="dark"` | Explicit choice — beats a light system. |
+### The homepage story
 
-`components/theme/theme.ts` holds the whole mechanism. `THEME_SCRIPT` is inlined
-render-blocking into `<head>` by the root layout: it resolves the stored choice
-(or the system preference) onto `<html data-theme>` before the first paint, so
-there is no flash of the wrong theme. The choice persists in `localStorage` and
-syncs across tabs. If the visitor has never chosen, the site keeps following the
-system setting live.
+The homepage is a single client component, `components/story/story.tsx`. The
+hero (`components/story/hero.tsx`) runs on GSAP ScrollTrigger; the other six
+scenes run on the scroll-craft engine (`public/scrollcraft/scrollcraft.js`,
+themed by `app/story.css`; the engine is vendored byte-for-byte and never
+edited). Seven scenes on alternating grounds: a layered photographic hero, the
+Sunday-night problem, three steps, the peak (`components/story/screen-roll.tsx`:
+two wheels, screen names and the seven real screens, turning under the scroll
+and meeting in the middle), four privacy refusals, two phones, and a close that
+holds on the App Store button. Scene icons are bespoke SVGs in
+`components/story/icons.tsx`, drawn in the app's Lucide idiom. Scene copy, screens and captions live in
+`components/story/story-data.ts`; the brief, the score, the feel check and the
+contact sheets are in `docs/redesign/`.
 
-The palette appears twice in `globals.css` — once inside the
-`prefers-color-scheme` media block, scoped with `:not([data-theme="light"])`,
-and once under `:root[data-theme="dark"]`. **Keep the two in sync.**
+The nav bar takes the ink of whatever `[data-ground]` section is under it
+(`components/site/ground-watch.tsx`), on every page: the story marks each
+scene, interior pages mark their teal bands and the footer.
 
-Theme-dependent artwork (the logo lockups, the toggle's sun and moon) ships both
-versions and lets CSS pick via `[data-theme-show]`, so the right one is painted
-on the first frame with no hydration flash. The WebGL scene reads the effective
-theme through `useTheme()` and relights itself to match.
-
-Three typefaces, each with one job:
-
-- **Instrument Serif** — display headings and every figure, as in the app
-- **Plus Jakarta Sans** — UI and body copy
-- **Alan Sans** — the `sidecar` logotype only, self-hosted from
-  `app/fonts/` because it isn't in `next/font/google` yet
-
-### The envelope scene
-
-`components/three/` renders instanced 3D envelopes on a single WebGL canvas that
-is sticky across the hero and the "how it works" act. A GSAP ScrollTrigger
-writes scroll progress into a ref that the render loop reads, so scrolling never
-causes a React re-render. The envelopes rest in a ring sized to the visible
-viewport — which keeps them clear of the copy at any aspect ratio — and assemble
-into a grid as the act scrolls past.
-
-It degrades in two steps: without WebGL, or under `prefers-reduced-motion`, the
-canvas is skipped and Lenis is never started. Every page is complete and
-readable with JavaScript disabled entirely.
+Under `prefers-reduced-motion` every plane and cue renders at its final state,
+so the depth stays and nothing moves. The page is complete and readable with
+JavaScript disabled.
 
 ### Assets
 

@@ -3,8 +3,9 @@ import { cn } from "@/lib/utils";
 type LogoProps = {
   className?: string;
   /**
-   * "auto"  — dark lockup on paper, light lockup in dark mode (nav, footer)
-   * "light" — always the cream lockup, for use on teal contrast bands
+   * "auto"  — teal lockup on paper; the cream lockup takes over when a dark
+   *           scene is under the nav bar (see GroundWatch and globals.css)
+   * "light" — always the cream lockup, for teal contrast bands
    */
   tone?: "auto" | "light";
 };
@@ -29,12 +30,9 @@ export function Logo({ className, tone = "auto" }: LogoProps) {
 
   return (
     <>
-      {/* Both lockups ship; CSS shows the one that suits the current theme.
-          A <picture media> query would only ever follow the system setting and
-          would ignore the visitor's explicit choice. */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        data-theme-show="light"
+        data-nav-logo="dark"
         src="/logos/lockup-dark.webp"
         alt="Sidecar"
         width={640}
@@ -43,9 +41,10 @@ export function Logo({ className, tone = "auto" }: LogoProps) {
       />
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        data-theme-show="dark"
+        data-nav-logo="light"
         src="/logos/lockup-light.webp"
-        alt="Sidecar"
+        alt=""
+        aria-hidden="true"
         width={640}
         height={124}
         className={cn("h-7 w-auto", className)}

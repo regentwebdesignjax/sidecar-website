@@ -69,60 +69,9 @@
 
    KEEP THE TWO BLOCKS IN SYNC — they are the same palette twice.
 --------------------------------------------------------------------------- */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --color-paper: #04201e;
-    --color-card: #0a302d;
-    --color-ink: #f3e8bc;
-    --color-dim: rgba(243, 232, 188, 0.58);
-    --color-faint: rgba(243, 232, 188, 0.32);
-    --color-line: rgba(243, 232, 188, 0.14);
-    --color-accent: #f3e8bc;
-    --color-band: #0a302d;
-    --color-pos: #5fcfa6;
-    --color-neg: #e2896f;
-  }
-}
-
-:root[data-theme="dark"] {
-  --color-paper: #04201e;
-  --color-card: #0a302d;
-  --color-ink: #f3e8bc;
-  --color-dim: rgba(243, 232, 188, 0.58);
-  --color-faint: rgba(243, 232, 188, 0.32);
-  --color-line: rgba(243, 232, 188, 0.14);
-  --color-accent: #f3e8bc;
-  --color-band: #0a302d;
-  --color-pos: #5fcfa6;
-  --color-neg: #e2896f;
-}
-
-/* Theme-dependent artwork and icons.
-   Two elements in the DOM, CSS picks one — so the correct image is painted on
-   the first frame with no JavaScript and no hydration flash. Same three-state
-   cascade as the palette above. */
-[data-theme-show="light"] {
-  display: block;
-}
-[data-theme-show="dark"] {
-  display: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) [data-theme-show="dark"] {
-    display: block;
-  }
-  :root:not([data-theme="light"]) [data-theme-show="light"] {
-    display: none;
-  }
-}
-
-:root[data-theme="dark"] [data-theme-show="dark"] {
-  display: block;
-}
-:root[data-theme="dark"] [data-theme-show="light"] {
-  display: none;
-}
+/* Light only. Sidecar's design system defines one cream theme and a teal
+   marketing ground; there is no dark mode. */
+:root { color-scheme: light; }
 
 /* --------------------------------------------------------------------------- */
 
@@ -192,15 +141,6 @@
     transform: scale(1.7) translate(9%, 4%);
   }
 
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) .hero-photo {
-      opacity: 0.07;
-    }
-  }
-
-  :root[data-theme="dark"] .hero-photo {
-    opacity: 0.07;
-  }
 
   /* Apple's display corner radius is 12.5% of the screen's width — 55pt across
      a 440pt screen on the 6.9" iPhone. Expressing it as a percentage pair keeps
@@ -284,3 +224,55 @@ html.lenis body {
     scroll-behavior: auto !important;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   Homepage story hooks. The story page sets data-story on <html> and keeps
+   data-ground in step with the scene under the nav bar, so the bar always
+   carries the ink of what it is over. These win over the theme toggle on
+   that page only; the scene grounds there are authored, not themed.
+--------------------------------------------------------------------------- */
+html[data-story] body > footer { display: none; }
+html[data-story] body > header { transition: background-color 300ms var(--ease-out-expo), border-color 300ms var(--ease-out-expo); }
+
+html[data-ground="light"] body > header,
+html[data-ground="sun"] body > header { --nav-ink: #0a2523; --nav-dim: rgba(10, 37, 35, 0.62); --nav-bg: rgba(247, 240, 219, 0.88); --nav-line: rgba(3, 83, 82, 0.13); }
+html[data-ground="sun"] body > header { --nav-bg: rgba(243, 232, 188, 0.9); }
+html[data-ground="dark"] body > header { --nav-ink: #f3e8bc; --nav-dim: rgba(243, 232, 188, 0.66); --nav-bg: rgba(4, 32, 30, 0.78); --nav-line: rgba(243, 232, 188, 0.14); }
+
+html[data-ground] body > header.border-line { border-color: var(--nav-line); background-color: var(--nav-bg); }
+html[data-ground] body > header :is(a, button):not(.bg-teal):not(.bg-sun) { color: var(--nav-ink); }
+html[data-ground] body > header .text-dim { color: var(--nav-dim); }
+
+/* The lockup follows the ground: teal artwork on paper, cream artwork on the
+   dark scenes. Both ship in the DOM; CSS shows one. */
+[data-nav-logo="light"] { display: none; }
+html[data-ground="dark"] body > header [data-nav-logo="light"] { display: block; }
+html[data-ground="dark"] body > header [data-nav-logo="dark"] { display: none; }
+
+/* Text colour utilities restated outside Tailwind's layers. The story engine's
+   stylesheet is unlayered and sets `:where(a) { color: inherit }`, which beats
+   any layered utility regardless of specificity; these win it back. */
+.text-sun { color: var(--color-sun); }
+.text-teal { color: var(--color-teal); }
+.text-ink { color: var(--color-ink); }
+.text-dim { color: var(--color-dim); }
+.text-accent { color: var(--color-accent); }
+.text-band-ink { color: var(--color-band-ink); }
+.text-band-dim { color: var(--color-band-dim); }
+
+/* The privacy policy's provider table stacks into labelled cards on phones
+   instead of scrolling sideways. */
+@media (max-width: 639px) {
+  table.providers thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  table.providers, table.providers tbody, table.providers tr, table.providers th, table.providers td { display: block; }
+  table.providers tr { padding: 0.9rem 0; }
+  table.providers th[scope="row"] { padding: 0 0 0.35rem; font-size: 1rem; }
+  table.providers td { padding: 0.15rem 0; }
+  table.providers td::before { content: attr(data-label) ": "; font-weight: 600; color: var(--color-ink); }
+}
+
+/* Card fan (Features page): the fan needs a fixed stage height; each card is
+   a phone that GSAP positions from the centre. */
+.fan-layout { height: clamp(24rem, 62vh, 40rem); overflow: clip; }
+.fan-card { left: 50%; top: 50%; width: clamp(150px, 19vw, 230px); margin-left: calc(clamp(150px, 19vw, 230px) / -2); margin-top: calc(clamp(150px, 19vw, 230px) * 2.1727 / -2); will-change: transform, opacity; opacity: 0; }
+@media (max-width: 640px) { .fan-layout { height: clamp(20rem, 52vh, 26rem); } .fan-card { width: clamp(130px, 40vw, 170px); margin-left: calc(clamp(130px, 40vw, 170px) / -2); margin-top: calc(clamp(130px, 40vw, 170px) * 2.1727 / -2); } }

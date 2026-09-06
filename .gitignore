@@ -34,3 +34,7 @@ next-env.d.ts
 
 # netlify
 .netlify/
+
+# scroll-craft workspace: raw generated assets, lab screenshots, registry.
+# The brief is copied into docs/ at handoff; nothing here ships.
+/scrollcraft/

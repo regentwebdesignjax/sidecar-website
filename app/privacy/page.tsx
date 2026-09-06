@@ -163,7 +163,7 @@ export default function PrivacyPage() {
       </p>
 
       <div className="overflow-x-auto">
-        <table className="w-full min-w-[560px] border-collapse text-left text-sm">
+        <table className="providers w-full border-collapse text-left text-sm sm:min-w-[560px]">
           <thead>
             <tr className="border-b border-line">
               <th scope="col" className="py-3 pr-6 font-semibold text-ink">
@@ -183,8 +183,8 @@ export default function PrivacyPage() {
                 <th scope="row" className="py-4 pr-6 align-top font-medium text-ink">
                   {row.provider}
                 </th>
-                <td className="py-4 pr-6 align-top">{row.does}</td>
-                <td className="py-4 align-top">{row.handles}</td>
+                <td data-label="What it does" className="py-4 pr-6 align-top">{row.does}</td>
+                <td data-label="What it handles" className="py-4 align-top">{row.handles}</td>
               </tr>
             ))}
           </tbody>

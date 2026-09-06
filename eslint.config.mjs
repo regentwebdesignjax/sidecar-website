@@ -15,6 +15,10 @@ const eslintConfig = defineConfig([
     // AppleDouble sidecar files: this project lives on an exFAT volume, which
     // shadows every file with a binary "._name" companion.
     "**/._*",
+    // The scroll-craft engine is vendored verbatim and never edited here.
+    "public/scrollcraft/**",
+    // Gitignored scroll-craft workspace: raw generations, lab shots, prep scripts.
+    "scrollcraft/**",
   ]),
   {
     rules: {

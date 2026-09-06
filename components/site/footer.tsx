@@ -6,7 +6,7 @@ import { footerLinks, siteConfig } from "@/lib/site.config";
 
 export function Footer() {
   return (
-    <footer className="border-t border-band-line bg-teal text-band-ink">
+    <footer data-ground="dark" className="border-t border-band-line bg-teal text-band-ink">
       <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
         <div className="grid gap-14 lg:grid-cols-[1.4fr_1fr]">
           <div className="max-w-md">

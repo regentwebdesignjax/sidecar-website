@@ -121,7 +121,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-teal px-6 py-24 text-band-ink sm:py-32">
+      <section data-ground="dark" className="bg-teal px-6 py-24 text-band-ink sm:py-32">
         <div className="mx-auto max-w-3xl text-center">
           <SplitHeadline className="display text-[clamp(2.25rem,5vw,3.5rem)] text-band-ink">
             Made with ❤ by {siteConfig.legal.entityShort}.
