@@ -65,9 +65,9 @@ export default function FeaturesPage() {
       <section data-ground="dark" className="bg-teal px-6 py-24 text-band-ink sm:py-32">
         <div className="mx-auto max-w-6xl">
           <SplitHeadline className="display mx-auto max-w-2xl text-center text-[clamp(2.25rem,5vw,3.5rem)] text-band-ink">
-            Every screen,
+            Did we mention how
             <br />
-            <span className="text-sun italic">end to end.</span>
+            <span className="text-sun italic">simple it is?</span>
           </SplitHeadline>
 
           {/* Phones get a swipeable stack; the fan needs the width. */}
