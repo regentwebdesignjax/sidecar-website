@@ -19,9 +19,9 @@ export default function FeaturesPage() {
     <>
       <Hero10
         title="Everything it does."
-        titleLine2Prefix="And nothing"
-        titleHighlight="it doesn't."
-        description="Sidecar is deliberately small. Every screen below earns its place, and there is no sixth tab hiding a feature you'll never use."
+        titleLine2Prefix="Makes budgeting"
+        titleHighlight="easier."
+        description="We made Sidecar deliberately simple to use. There are no third-party integrations or hidden features, and we like it that way."
         socialProof="Free · No bank connection · No trackers"
         images={[
           "/device/envelopes.webp",
